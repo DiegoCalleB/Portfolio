@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/* Espectro (identidad de BandManager): cero bordes, color por sección, el resto es gris. */
+:root {
+  --bg: #F6F7F9; --surface: #FFFFFF; --sunken: #E8EBEF;
+  --ink: #2A2E35; --ink-2: #646C78; --ink-3: #98A0AC;
+  --hair: rgba(42, 46, 53, .065);
+  --ok: #17998C; --ok-soft: #DDF1EE; --alert: #B3453C;
+  --r-s: 12px; --r-m: 18px; --r-l: 24px; --r-xl: 32px; --r-pill: 999px;
+  --font-sans: "Onest Variable", system-ui, sans-serif;
+  /* Por defecto, el naranja de Panel/Booking */
+  --acc: #D86E31; --acc-soft: #F9EAE1; --acc-ink: #813F18;
+  color-scheme: light;
+}
+[data-theme="dark"] {
+  --bg: #101216; --surface: #191C21; --sunken: #0B0D10;
+  --ink: #E3E7EC; --ink-2: #99A1AC; --ink-3: #6B7380;
+  --hair: rgba(227, 231, 236, .08);
+  --ok: #4FC7B8; --ok-soft: #122D29; --alert: #E27A70;
+  --acc: #E99463; --acc-soft: #3A2417; --acc-ink: #F2B48C;
+  color-scheme: dark;
+}
+
+/* Color por sección (data-modulo), como los módulos de BandManager */
+[data-modulo="proyectos"] { --acc: #9B5FB5; --acc-soft: #F0E7F5; --acc-ink: #6F3D87; }
+[data-modulo="trayectoria"] { --acc: #3C7EA8; --acc-soft: #E2EDF4; --acc-ink: #24587A; }
+[data-modulo="formacion"] { --acc: #17998C; --acc-soft: #DDF1EE; --acc-ink: #0E6B62; }
+[data-theme="dark"] [data-modulo="proyectos"] { --acc: #C08FD6; --acc-soft: #2C1F35; --acc-ink: #D9B8E8; }
+[data-theme="dark"] [data-modulo="trayectoria"] { --acc: #6FB0D9; --acc-soft: #16293A; --acc-ink: #A9D0EA; }
+[data-theme="dark"] [data-modulo="formacion"] { --acc: #4FC7B8; --acc-soft: #122D29; --acc-ink: #8EDDD2; }
+
+@theme inline {
+  --color-bg: var(--bg); --color-surface: var(--surface); --color-sunken: var(--sunken);
+  --color-ink: var(--ink); --color-ink-2: var(--ink-2); --color-ink-3: var(--ink-3);
+  --color-hair: var(--hair); --color-ok: var(--ok); --color-alert: var(--alert);
+  --color-acc: var(--acc); --color-acc-soft: var(--acc-soft); --color-acc-ink: var(--acc-ink);
+  --radius-s: var(--r-s); --radius-m: var(--r-m); --radius-l: var(--r-l); --radius-xl: var(--r-xl); --radius-pill: var(--r-pill);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-sans);
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+::selection { background: var(--acc-soft); color: var(--ink); }
+:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; border-radius: 6px; }
+.tnum { font-variant-numeric: tabular-nums; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

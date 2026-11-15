@@ -24,8 +24,8 @@ export const hero = {
     en: 'I lead Data & AI at promoCAR (Kantar Insights), where I still code, and outside the office I build AI products end to end.',
   } as T,
   pruebas: {
-    es: ['Programando desde 2007', 'Datos para Stellantis, Renault y Ford', '2 productos con IA en producción'],
-    en: ['Coding since 2007', 'Data for Stellantis, Renault and Ford', '2 AI products in production'],
+    es: ['Programando desde 2007', 'Datos para grandes grupos de automoción', '2 productos con IA en producción'],
+    en: ['Coding since 2007', 'Data for major automotive groups', '2 AI products in production'],
   } as Record<Lang, string[]>,
 };
 
@@ -100,7 +100,7 @@ export const trayectoria: Etapa[] = [
     cargo: { es: 'Innovation & Development Consultant · Senior Analyst & Developer', en: 'Innovation & Development Consultant · Senior Analyst & Developer' },
     puntos: [
       { es: 'Desarrollo completo de las aplicaciones de la empresa, de la base de datos al despliegue (ASP.NET, VB.NET, SQL Server).', en: "Full development of the company's applications, from database to deployment (ASP.NET, VB.NET, SQL Server)." },
-      { es: 'Cálculos de beneficio promocional y financiación para analizar datos de mystery shopping en más de 20 mercados, para clientes como Stellantis, Renault y Ford.', en: 'Promotional-benefit and financing calculations to analyse mystery-shopping data in 20+ markets, for clients such as Stellantis, Renault and Ford.' },
+      { es: 'Cálculos de beneficio promocional y financiación para analizar datos de mystery shopping en más de 20 mercados, para los principales grupos de automoción.', en: 'Promotional-benefit and financing calculations to analyse mystery-shopping data in 20+ markets, for leading automotive groups.' },
       { es: 'Cuadros de mando en Power BI para clientes, procesos ETL y web scraping.', en: 'Power BI dashboards for clients, ETL processes and web scraping.' },
     ],
   },

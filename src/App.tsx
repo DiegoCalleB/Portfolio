@@ -19,7 +19,7 @@ function Cabecera({ t, lang, setLang, tema, setTema }: { t: Textos; lang: Lang; 
   const [sonido, setSonido] = useSonido();
   const siguiente: Record<PrefTema, PrefTema> = { system: 'light', light: 'dark', dark: 'system' };
   return (
-    <header className="sticky top-0 z-10 bg-bg/90 py-3">
+    <header className="sticky top-0 z-10 bg-bg py-3">
       <Contenedor className="flex items-center gap-3">
         <a href="#inicio" className="mr-auto text-[15px] font-semibold tracking-tight">Diego de la Calle</a>
         <nav className="hidden gap-1 md:flex">

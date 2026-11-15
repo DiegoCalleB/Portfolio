@@ -65,3 +65,10 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-sans); 
 .onda-viva span:nth-child(2) { animation-delay: .12s; } .onda-viva span:nth-child(3) { animation-delay: .24s; }
 .onda-viva span:nth-child(4) { animation-delay: .36s; } .onda-viva span:nth-child(5) { animation-delay: .48s; }
 @keyframes onda-viva { 0%, 100% { transform: scaleY(.3); } 50% { transform: scaleY(1); } }
+
+/* Eco a cuerpo entero: bote al cambiar de pose y respiración en reposo */
+.eco-bote { animation: eco-bote .5s cubic-bezier(.3, 1.6, .5, 1) both; transform-origin: bottom center; }
+.eco-cuerpo { animation: eco-respira 3.2s ease-in-out infinite; transform-origin: bottom center; }
+.eco-cuerpo:hover .eco-bote { transform: rotate(-3deg) scale(1.03); transition: transform .2s; }
+@keyframes eco-bote { 0% { transform: translateY(6px) scale(.94, 1.06); } 55% { transform: translateY(-8px) scale(1.03, .97); } 100% { transform: none; } }
+@keyframes eco-respira { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.015); } }

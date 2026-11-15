@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { Lang } from '../data/perfil';
 import type { Textos } from '../data/textos';
 import type { Msg } from '../lib/ecoCore';
+import { EcoCuerpo, type Pose } from './EcoCuerpo';
 
 const Avatar = ({ size = 'size-9' }: { size?: string }) => (
   <img src="/eco-avatar.webp" alt="" aria-hidden width={192} height={192} className={`${size} shrink-0 select-none object-contain`} />
@@ -11,7 +12,7 @@ export function EcoChat({ t, lang }: { t: Textos['eco']; lang: Lang }) {
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [texto, setTexto] = useState('');
   const [cargando, setCargando] = useState(false);
-  const [aviso, setAviso] = useState<string | null>(null);
+  const [aviso, setAviso] = useState<{ texto: string; tipo: 'limite' | 'error' } | null>(null);
   const lista = useRef<HTMLDivElement>(null);
 
   useEffect(() => { lista.current?.scrollTo({ top: lista.current.scrollHeight, behavior: 'smooth' }); }, [msgs, cargando]);
@@ -28,14 +29,18 @@ export function EcoChat({ t, lang }: { t: Textos['eco']; lang: Lang }) {
       if (!r.ok || !data.reply) throw new Error('error');
       setMsgs([...nuevos, { role: 'eco', text: data.reply }]);
     } catch (e) {
-      setAviso(e instanceof Error && e.message === 'limite' ? t.limite : t.error);
+      const limite = e instanceof Error && e.message === 'limite';
+      setAviso({ texto: limite ? t.limite : t.error, tipo: limite ? 'limite' : 'error' });
     } finally {
       setCargando(false);
     }
   }
 
+  const pose: Pose = cargando ? 'desconfiado' : aviso ? (aviso.tipo === 'limite' ? 'avergonzado' : 'sudando') : msgs.length ? 'critico' : 'pillo';
+
   return (
-    <section aria-label="Eco" className="flex flex-col rounded-l bg-surface p-4 sm:p-5">
+    <section aria-label="Eco" className="relative mt-28 flex flex-col rounded-l bg-surface p-4 sm:mt-32 sm:p-5 lg:mt-24">
+      <EcoCuerpo pose={pose} etiqueta={t.tocar} />
       <div ref={lista} aria-live="polite" className="flex max-h-80 min-h-40 lg:max-h-[26rem] flex-col gap-3 overflow-y-auto pr-1">
         <div className="flex items-start gap-3">
           <Avatar />
@@ -59,7 +64,7 @@ export function EcoChat({ t, lang }: { t: Textos['eco']; lang: Lang }) {
             <span className="text-sm text-ink-2">{t.pensando}</span>
           </div>
         )}
-        {aviso && <p className="ml-12 text-sm text-ink-2">{aviso}</p>}
+        {aviso && <p className="ml-12 text-sm text-ink-2">{aviso.texto}</p>}
       </div>
 
       {msgs.length === 0 && (

@@ -50,6 +50,7 @@ export const responsabilidad = {
     { es: 'Todas las bases de datos SQL Server del negocio', en: "All of the business's SQL Server databases" },
     { es: 'Decisiones técnicas importantes', en: 'Important technical decisions' },
     { es: 'Solución a los problemas que surgen en el día a día', en: 'Solutions to the problems that come up day to day' },
+    { es: 'Coordinación de las empresas externas: control, decisiones y soluciones', en: 'Coordination of external firms: control, decisions and solutions' },
     { es: 'Incidencias de todo tipo, internas y de cliente', en: 'Incidents of every kind, internal and client-facing' },
   ] as T[],
 };
@@ -154,6 +155,7 @@ export const trayectoria: Etapa[] = [
       { es: 'Cálculos de beneficio promocional y financiación para analizar datos de mystery shopping en más de 20 mercados, para los principales grupos de automoción.', en: 'Promotional-benefit and financing calculations to analyse mystery-shopping data in 20+ markets, for leading automotive groups.' },
       { es: 'Informes y cuadros de mando en Power BI para clientes.', en: 'Client reports and Power BI dashboards.' },
       { es: 'Decisiones técnicas clave y resolución de todo tipo de incidencias, internas y de cliente.', en: 'Key technical decisions and resolution of all kinds of internal and client incidents.' },
+      { es: 'Coordinación técnica de las empresas externas contratadas para ciertos desarrollos: control del proyecto, decisiones y soluciones a los problemas.', en: 'Technical coordination of the external firms hired for certain developments: project control, decisions and solutions to problems.' },
     ],
   },
   {

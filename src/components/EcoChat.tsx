@@ -2,13 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import type { Lang } from '../data/perfil';
 import type { Textos } from '../data/textos';
 import type { Msg } from '../lib/ecoCore';
-import { EcoCuerpo, type Pose } from './EcoCuerpo';
+import type { Pose } from './EcoPose';
 
-const Avatar = ({ size = 'size-9' }: { size?: string }) => (
-  <img src="/eco-avatar.webp" alt="" aria-hidden width={192} height={192} className={`${size} shrink-0 select-none object-contain`} />
-);
+const Avatar = () => <img src="/eco-avatar.webp" alt="" aria-hidden width={192} height={192} className="size-9 shrink-0 select-none object-contain" />;
 
-export function EcoChat({ t, lang }: { t: Textos['eco']; lang: Lang }) {
+/** Cuerpo del chat. La cara de Eco en la cabecera del panel sigue lo que pasa aquí (`onPose`). */
+export function EcoChat({ t, lang, onPose }: { t: Textos['eco']; lang: Lang; onPose: (p: Pose) => void }) {
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [texto, setTexto] = useState('');
   const [cargando, setCargando] = useState(false);
@@ -16,6 +15,8 @@ export function EcoChat({ t, lang }: { t: Textos['eco']; lang: Lang }) {
   const lista = useRef<HTMLDivElement>(null);
 
   useEffect(() => { lista.current?.scrollTo({ top: lista.current.scrollHeight, behavior: 'smooth' }); }, [msgs, cargando]);
+  const pose: Pose = cargando ? 'desconfiado' : aviso ? (aviso.tipo === 'limite' ? 'avergonzado' : 'sudando') : msgs.length ? 'critico' : 'pillo';
+  useEffect(() => { onPose(pose); }, [pose, onPose]);
 
   async function preguntar(pregunta: string) {
     const q = pregunta.trim();
@@ -36,12 +37,9 @@ export function EcoChat({ t, lang }: { t: Textos['eco']; lang: Lang }) {
     }
   }
 
-  const pose: Pose = cargando ? 'desconfiado' : aviso ? (aviso.tipo === 'limite' ? 'avergonzado' : 'sudando') : msgs.length ? 'critico' : 'pillo';
-
   return (
-    <section aria-label="Eco" className="relative mt-28 flex flex-col rounded-l bg-surface p-4 sm:mt-32 sm:p-5 lg:mt-24">
-      <EcoCuerpo pose={pose} etiqueta={t.tocar} />
-      <div ref={lista} aria-live="polite" className="flex max-h-80 min-h-40 lg:max-h-[26rem] flex-col gap-3 overflow-y-auto pr-1">
+    <div className="flex min-h-0 flex-1 flex-col px-4 pb-4 sm:px-5 sm:pb-5">
+      <div ref={lista} aria-live="polite" className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto pr-1">
         <div className="flex items-start gap-3">
           <Avatar />
           <p className="rounded-m bg-sunken px-4 py-2.5 text-[15px] leading-relaxed">{t.saludo}</p>
@@ -68,27 +66,22 @@ export function EcoChat({ t, lang }: { t: Textos['eco']; lang: Lang }) {
       </div>
 
       {msgs.length === 0 && (
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-3 flex flex-wrap gap-2">
           {t.sugerencias.map((s) => (
-            <button key={s} onClick={() => preguntar(s)} className="rounded-pill bg-sunken px-3.5 py-1.5 text-sm text-ink-2 transition-colors hover:bg-acc-soft hover:text-acc-ink">
-              {s}
-            </button>
+            <button key={s} onClick={() => preguntar(s)} className="rounded-pill bg-sunken px-3.5 py-1.5 text-sm text-ink-2 transition-colors hover:bg-acc-soft hover:text-acc-ink">{s}</button>
           ))}
         </div>
       )}
 
-      <form onSubmit={(e) => { e.preventDefault(); preguntar(texto); }} className="mt-4 flex gap-2">
+      <form onSubmit={(e) => { e.preventDefault(); preguntar(texto); }} className="mt-3 flex gap-2">
         <label className="sr-only" htmlFor="eco-input">{t.placeholder}</label>
         <input
-          id="eco-input" value={texto} onChange={(e) => setTexto(e.target.value)} maxLength={500}
-          placeholder={t.placeholder} autoComplete="off"
+          id="eco-input" value={texto} onChange={(e) => setTexto(e.target.value)} maxLength={500} placeholder={t.placeholder} autoComplete="off"
           className="min-w-0 flex-1 rounded-pill bg-sunken px-4 py-2.5 text-[15px] text-ink placeholder:text-ink-3 focus:outline-none focus-visible:outline-2 focus-visible:outline-acc"
         />
-        <button type="submit" disabled={cargando || !texto.trim()} className="rounded-pill bg-acc-ink px-5 py-2.5 text-[15px] font-semibold text-surface transition-opacity disabled:opacity-40">
-          {t.enviar}
-        </button>
+        <button type="submit" disabled={cargando || !texto.trim()} className="rounded-pill bg-acc-ink px-5 py-2.5 text-[15px] font-semibold text-surface transition-opacity disabled:opacity-40">{t.enviar}</button>
       </form>
-      <p className="mt-3 text-xs text-ink-3">{t.aviso}</p>
-    </section>
+      <p className="mt-2 text-xs text-ink-3">{t.aviso}</p>
+    </div>
   );
 }

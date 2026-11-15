@@ -23,11 +23,18 @@ export const hero = {
     es: 'Dirijo Data & AI en promoCAR (Kantar Insights), donde sigo programando, y fuera de la oficina construyo productos con IA de principio a fin.',
     en: 'I lead Data & AI at promoCAR (Kantar Insights), where I still code, and outside the office I build AI products end to end.',
   } as T,
-  pruebas: {
-    es: ['17 años en promoCAR (Kantar Insights)', 'Datos para grandes grupos de automoción', '2 productos con IA en producción'],
-    en: ['17 years at promoCAR (Kantar Insights)', 'Data for major automotive groups', '2 AI products in production'],
-  } as Record<Lang, string[]>,
+  destacado: { es: 'con agentes de IA.', en: 'with AI agents.' } as T,
 };
+
+export const contadores: { valor: number; mas?: boolean; etiqueta: T }[] = [
+  { valor: 17, etiqueta: { es: 'años en promoCAR', en: 'years at promoCAR' } },
+  { valor: 20, mas: true, etiqueta: { es: 'mercados de mystery shopping', en: 'mystery-shopping markets' } },
+  { valor: 6, etiqueta: { es: 'apps migradas de Access a Python', en: 'apps migrated from Access to Python' } },
+  { valor: 2, etiqueta: { es: 'productos con IA en producción', en: 'AI products in production' } },
+];
+
+/** Cinta de tecnologías: solo las que aparecen en el CV. */
+export const ticker = ['Python', 'TypeScript', 'React', 'Next.js', 'Node.js', 'FastAPI', 'pandas', 'SQL Server', 'PostgreSQL', 'Supabase', 'pgvector', 'Gemini', 'Claude', 'OpenAI', 'Replicate', 'ElevenLabs', 'Azure AI', 'Power BI', 'Claude Code', 'Vercel', 'Railway', 'Playwright', 'Vitest', 'GitHub Actions', 'Stripe'];
 
 /** promoCAR: 17 años de experiencia contados como casos (sin nombres de clientes, por confidencialidad). */
 export const casosPromocar: { titulo: T; problema: T; solucion: T; resultado: T; stack: string[] }[] = [

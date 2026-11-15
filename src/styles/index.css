@@ -72,3 +72,28 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-sans); 
 .eco-cuerpo:hover .eco-bote { transform: rotate(-3deg) scale(1.03); transition: transform .2s; }
 @keyframes eco-bote { 0% { transform: translateY(6px) scale(.94, 1.06); } 55% { transform: translateY(-8px) scale(1.03, .97); } 100% { transform: none; } }
 @keyframes eco-respira { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.015); } }
+
+/* Colores de cada etapa de la carrera y de los contadores */
+:root { --mod-1: #D86E31; --mod-2: #3C7EA8; --mod-3: #17998C; --mod-4: #9B5FB5; }
+[data-theme="dark"] { --mod-1: #E99463; --mod-2: #6FB0D9; --mod-3: #4FC7B8; --mod-4: #C08FD6; }
+
+/* Entrada de la portada y aparición por scroll */
+.entra { animation: entra .7s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes entra { from { opacity: 0; transform: translateY(14px); } }
+.rev { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .8, .2, 1); }
+.rev-in { opacity: 1; transform: none; }
+.rev .barra-t { transform: scaleY(.15); transform-origin: bottom; transition: transform .7s cubic-bezier(.3, 1.5, .5, 1); }
+.rev-in .barra-t { transform: none; }
+
+/* Cinta de tecnologías */
+.mascara-lados { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.ticker { display: flex; width: max-content; animation: ticker 60s linear infinite; }
+.ticker:hover { animation-play-state: paused; }
+@keyframes ticker { to { transform: translateX(-50%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .rev { opacity: 1; transform: none; }
+  .rev .barra-t { transform: none; }
+  .ticker { width: auto; flex-wrap: wrap; justify-content: center; }
+  .ticker-copia { display: none; }
+}

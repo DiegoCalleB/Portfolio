@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { casosPromocar, competencias, contacto, formacion, hero, laboratorio, proyectos, sobreMi, ticker, trayectoria, type Lang } from './data/perfil';
+import { casosPromocar, competencias, contacto, formacion, hero, laboratorio, proyectos, responsabilidad, sobreMi, ticker, trayectoria, type Lang } from './data/perfil';
 import { textos, type Textos } from './data/textos';
 import { CarreraOnda } from './components/CarreraOnda';
 import { Contadores } from './components/Contadores';
@@ -135,6 +135,31 @@ export default function App() {
         </section>
 
         <Seccion id="promocar" modulo="trayectoria" titulo={t.promocar.titulo} sub={t.promocar.sub}>
+          <Revelar className="mb-4">
+            <div className="grid gap-6 rounded-l bg-surface p-5 sm:p-7 lg:grid-cols-[1.1fr_1fr] lg:gap-10">
+              <div>
+                <h3 className="text-xl font-semibold tracking-tight sm:text-2xl">{responsabilidad.titulo[lang]}</h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-ink-2">{responsabilidad.intro[lang]}</p>
+                <p className="mt-5 text-sm font-semibold text-acc-ink">{t.promocar.modulos}</p>
+                <ul className="mt-2 flex flex-wrap gap-2">
+                  {responsabilidad.modulos.map((m, k) => (
+                    <li key={m} className="flex items-center gap-2 rounded-pill bg-sunken px-3.5 py-1.5 text-sm font-semibold">
+                      <span aria-hidden className="h-4 w-1.5 rounded-pill" style={{ background: `var(--mod-${k + 1})` }} />{m}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <ul className="flex flex-col gap-2.5 self-center text-[15px] leading-snug">
+                {responsabilidad.puntos.map((p, k) => (
+                  <li key={k} className="flex items-start gap-3">
+                    <span aria-hidden className="mt-1 h-4 w-1.5 shrink-0 rounded-pill bg-acc" />
+                    <span className="text-ink-2">{p[lang]}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Revelar>
+
           <div className="grid gap-4 lg:grid-cols-3">
             {casosPromocar.map((c, i) => (
               <Revelar key={c.titulo.es} retraso={i * 100} className="h-full">

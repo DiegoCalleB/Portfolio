@@ -2,18 +2,21 @@ import { competencias, contacto, formacion, hero, laboratorio, proyectos, sobreM
 import { textos, type Textos } from './data/textos';
 import { EcoChat } from './components/EcoChat';
 import { useIdioma, useTema, type PrefTema } from './lib/ajustes';
+import { celebrar, useSonido } from './lib/sonido';
+import { Publico } from './components/Publico';
 
 const Contenedor = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
   <div className={`mx-auto w-full max-w-5xl px-4 sm:px-6 ${className}`}>{children}</div>
 );
 
 const BotonCV = ({ lang, t, suave }: { lang: Lang; t: Textos; suave?: boolean }) => (
-  <a href={contacto.cv[lang]} download className={`inline-flex items-center rounded-pill px-5 py-2.5 text-[15px] font-semibold transition-colors ${suave ? 'bg-sunken text-ink hover:bg-acc-soft hover:text-acc-ink' : 'bg-acc-ink text-surface'}`}>
+  <a href={contacto.cv[lang]} download onClick={celebrar} className={`inline-flex items-center rounded-pill px-5 py-2.5 text-[15px] font-semibold transition-colors ${suave ? 'bg-sunken text-ink hover:bg-acc-soft hover:text-acc-ink' : 'bg-acc-ink text-surface'}`}>
     {t.cv}
   </a>
 );
 
 function Cabecera({ t, lang, setLang, tema, setTema }: { t: Textos; lang: Lang; setLang: (l: Lang) => void; tema: PrefTema; setTema: (p: PrefTema) => void }) {
+  const [sonido, setSonido] = useSonido();
   const siguiente: Record<PrefTema, PrefTema> = { system: 'light', light: 'dark', dark: 'system' };
   return (
     <header className="sticky top-0 z-10 bg-bg/90 py-3">
@@ -26,6 +29,9 @@ function Cabecera({ t, lang, setLang, tema, setTema }: { t: Textos; lang: Lang; 
         </nav>
         <button onClick={() => setLang(lang === 'es' ? 'en' : 'es')} className="rounded-pill bg-sunken px-3 py-1.5 text-sm font-medium" aria-label={lang === 'es' ? 'Switch to English' : 'Cambiar a español'}>
           {lang === 'es' ? 'EN' : 'ES'}
+        </button>
+        <button onClick={() => setSonido(!sonido)} aria-pressed={sonido} className="rounded-pill bg-sunken px-3 py-1.5 text-sm text-ink-2" title={t.sonido.titulo}>
+          {sonido ? t.sonido.si : t.sonido.no}
         </button>
         <button onClick={() => setTema(siguiente[tema])} className="rounded-pill bg-sunken px-3 py-1.5 text-sm text-ink-2" title={t.tema[tema]}>
           {t.tema[tema]}
@@ -61,10 +67,10 @@ export default function App() {
       <main>
         {/* Inicio: posicionamiento + Eco (demo en vivo) */}
         <section id="inicio" className="pb-10 pt-8 sm:pt-16">
-          <Contenedor className="grid items-start gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
+          <Contenedor className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
             <div>
               <p className="text-sm font-medium text-acc-ink">{hero.cargo[lang]}</p>
-              <h1 className="mt-3 text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl">{hero.titular[lang]}</h1>
+              <h1 className="mt-3 text-[2rem] font-semibold [overflow-wrap:anywhere] min-[400px]:text-4xl leading-[1.08] tracking-tight sm:text-5xl">{hero.titular[lang]}</h1>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-2">{hero.bajada[lang]}</p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <BotonCV lang={lang} t={t} />
@@ -179,12 +185,13 @@ export default function App() {
 
         <Seccion id="contacto" titulo={t.contacto.titulo} sub={t.contacto.sub}>
           <div className="flex flex-wrap gap-3">
-            <a href={`mailto:${contacto.email}`} className="rounded-pill bg-acc-ink px-5 py-2.5 text-[15px] font-semibold text-surface">{t.contacto.email}</a>
+            <a href={`mailto:${contacto.email}`} onClick={celebrar} className="rounded-pill bg-acc-ink px-5 py-2.5 text-[15px] font-semibold text-surface">{t.contacto.email}</a>
             <a href={contacto.linkedin} target="_blank" rel="noopener" className="rounded-pill bg-sunken px-5 py-2.5 text-[15px] font-semibold hover:bg-acc-soft hover:text-acc-ink">{t.contacto.linkedin} ↗</a>
             <BotonCV lang={lang} t={t} suave />
           </div>
         </Seccion>
       </main>
+      <Publico />
       <footer className="pb-10">
         <Contenedor><p className="text-sm text-ink-3">{t.pie}</p></Contenedor>
       </footer>

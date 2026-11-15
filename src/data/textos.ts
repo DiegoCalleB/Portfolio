@@ -4,6 +4,7 @@ export const textos = {
   es: {
     nav: { proyectos: 'Proyectos', trayectoria: 'Trayectoria', formacion: 'Formación', contacto: 'Contacto' },
     tema: { light: 'Claro', dark: 'Oscuro', system: 'Sistema' },
+    sonido: { si: '♪ Sí', no: '♪ No', titulo: 'Sonido al descargar el CV' },
     cv: 'Descargar CV',
     escribeme: 'Escríbeme',
     eco: {
@@ -25,6 +26,7 @@ export const textos = {
   en: {
     nav: { proyectos: 'Projects', trayectoria: 'Career', formacion: 'Education', contacto: 'Contact' },
     tema: { light: 'Light', dark: 'Dark', system: 'System' },
+    sonido: { si: '♪ On', no: '♪ Off', titulo: 'Sound when downloading the CV' },
     cv: 'Download CV',
     escribeme: 'Get in touch',
     eco: {

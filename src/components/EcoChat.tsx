@@ -51,7 +51,14 @@ export function EcoChat({ t, lang }: { t: Textos['eco']; lang: Lang }) {
             </div>
           ),
         )}
-        {cargando && <p className="ml-12 text-sm text-ink-2">{t.pensando}</p>}
+        {cargando && (
+          <div className="ml-12 flex items-center gap-3" role="status">
+            <div className="onda-viva flex h-6 items-end gap-1" aria-hidden>
+              {[60, 100, 75, 90, 50].map((h, i) => <span key={i} className="w-1.5 rounded-pill bg-acc" style={{ height: `${h}%` }} />)}
+            </div>
+            <span className="text-sm text-ink-2">{t.pensando}</span>
+          </div>
+        )}
         {aviso && <p className="ml-12 text-sm text-ink-2">{aviso}</p>}
       </div>
 

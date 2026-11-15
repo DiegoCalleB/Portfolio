@@ -184,7 +184,7 @@ export const competencias: { grupo: T; items: string[] }[] = [
 
 export const sobreMi = {
   idiomas: { es: 'Español nativo · Inglés B2 (profesional)', en: 'Spanish (native) · English B2 (professional)' } as T,
-  aficiones: { es: 'Música (toco el bajo y el piano), esquí y montaña.', en: 'Music (I play bass and piano), skiing and the mountains.' } as T,
+  aficiones: { es: 'Música (toco el bajo y el piano), esquí y malabares.', en: 'Music (I play bass and piano), skiing and juggling.' } as T,
 };
 
 /** Ficha que recibe Eco. Se genera de los mismos datos que pinta la web. */

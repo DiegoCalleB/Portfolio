@@ -15,7 +15,7 @@ export function EcoChat({ t, lang, onPose }: { t: Textos['eco']; lang: Lang; onP
   const lista = useRef<HTMLDivElement>(null);
 
   useEffect(() => { lista.current?.scrollTo({ top: lista.current.scrollHeight, behavior: 'smooth' }); }, [msgs, cargando]);
-  const pose: Pose = cargando ? 'desconfiado' : aviso ? (aviso.tipo === 'limite' ? 'avergonzado' : 'sudando') : msgs.length ? 'critico' : 'pillo';
+  const pose: Pose = cargando || msgs.length ? 'critico' : 'pillo';
   useEffect(() => { onPose(pose); }, [pose, onPose]);
 
   async function preguntar(pregunta: string) {

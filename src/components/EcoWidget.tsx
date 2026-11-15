@@ -4,7 +4,7 @@ import type { Textos } from '../data/textos';
 import { EcoChat } from './EcoChat';
 import { EcoPose, type Pose } from './EcoPose';
 
-const POSE_SECCION: Record<string, Pose> = { inicio: 'pillo', promocar: 'critico', proyectos: 'pillo', trayectoria: 'desconfiado', formacion: 'avergonzado', contacto: 'pillo' };
+const POSE_SECCION: Record<string, Pose> = { inicio: 'pillo', promocar: 'critico', proyectos: 'pillo', trayectoria: 'critico', formacion: 'pillo', contacto: 'pillo' };
 const SOMBRA = 'shadow-[0_10px_30px_-10px_rgba(16,18,22,.35)]';
 
 /**

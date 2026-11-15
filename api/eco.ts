@@ -9,7 +9,8 @@ const json = (status: number, body: unknown) =>
 /** Función de Vercel: POST /api/eco { messages, lang } → { reply } */
 export async function POST(request: Request): Promise<Response> {
   const clave = process.env.GEMINI_API_KEY;
-  if (!clave) return json(503, { error: 'eco_sin_configurar' });
+  // DIAGNÓSTICO TEMPORAL: solo nombres de variables, nunca valores. Se retira en cuanto Eco funcione.
+  if (!clave) return json(503, { error: 'eco_sin_configurar', entorno: process.env.VERCEL_ENV ?? null, parecidas: Object.keys(process.env).filter((k) => /gemini|google|studio|eco/i.test(k)) });
 
   const ip = (request.headers.get('x-forwarded-for') || 'anon').split(',')[0].trim();
   if (!permitir(ip)) return json(429, { error: 'demasiadas_preguntas' });

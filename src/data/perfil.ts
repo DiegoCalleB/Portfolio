@@ -30,7 +30,7 @@ export const contadores: { valor: number; mas?: boolean; etiqueta: T }[] = [
   { valor: 17, etiqueta: { es: 'años en promoCAR', en: 'years at promoCAR' } },
   { valor: 20, mas: true, etiqueta: { es: 'mercados de mystery shopping', en: 'mystery-shopping markets' } },
   { valor: 6, etiqueta: { es: 'apps migradas de Access a Python', en: 'apps migrated from Access to Python' } },
-  { valor: 2, etiqueta: { es: 'productos con IA en producción', en: 'AI products in production' } },
+  { valor: 6, etiqueta: { es: 'proyectos propios en producción', en: 'personal projects in production' } },
 ];
 
 /** Cinta de tecnologías: solo las que aparecen en el CV. */
@@ -126,11 +126,10 @@ export const proyectos: Proyecto[] = [
 
 /** Laboratorio: añade `url` cuando Diego pase los enlaces. */
 export const laboratorio: { nombre: T; desc: T; url?: string; nota?: T }[] = [
-  { nombre: { es: 'Gestión de restaurantes con IA', en: 'AI restaurant management' }, desc: { es: 'Albaranes y escandallos.', en: 'Delivery notes and recipe costing.' } },
-  { nombre: { es: 'Espejo virtual', en: 'Virtual mirror' }, desc: { es: 'Para barberías.', en: 'For barbershops.' } },
-  { nombre: { es: 'Tareas del hogar', en: 'Household tasks' }, desc: { es: 'Para organizar la casa en familia.', en: 'To run the home as a family.' } },
+  { nombre: { es: "Silvestre's Restaurants", en: "Silvestre's Restaurants" }, desc: { es: 'Gestión de restaurantes con IA: albaranes y escandallos.', en: 'AI restaurant management: delivery notes and recipe costing.' } },
+  { nombre: { es: 'Gestión Familiar', en: 'Gestión Familiar' }, desc: { es: 'Tareas del hogar para organizar la casa en familia.', en: 'Household tasks to run the home as a family.' } },
   { nombre: { es: 'Scroll Challenge', en: 'Scroll Challenge' }, desc: { es: 'Juego para móvil.', en: 'Mobile game.' }, nota: { es: 'En Google Play', en: 'On Google Play' } },
-  { nombre: { es: 'Six Seven y La Cueva', en: 'Six Seven and La Cueva' }, desc: { es: 'Juegos web.', en: 'Web games.' } },
+  { nombre: { es: 'Six Seven', en: 'Six Seven' }, desc: { es: 'Juego.', en: 'Game.' } },
 ];
 
 /** `anos` alimenta la Onda (altura de cada barra = años reales en la etapa). */

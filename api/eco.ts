@@ -1,4 +1,4 @@
-import { crearLimitador, instruccionesEco, limpiarConversacion } from '../src/lib/ecoCore';
+import { crearLimitador, instruccionesEco, limpiarConversacion } from '../src/lib/ecoCore.js';
 
 const permitir = crearLimitador();
 const MODELO = process.env.ECO_MODEL || 'gemini-2.5-flash';

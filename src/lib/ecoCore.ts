@@ -1,4 +1,4 @@
-import { fichaParaEco } from '../data/perfil';
+import { fichaParaEco } from '../data/perfil.js';
 
 export type Msg = { role: 'user' | 'eco'; text: string };
 

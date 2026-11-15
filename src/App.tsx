@@ -1,4 +1,4 @@
-import { competencias, contacto, formacion, hero, laboratorio, proyectos, sobreMi, trayectoria, type Lang } from './data/perfil';
+import { casosPromocar, competencias, contacto, formacion, hero, laboratorio, proyectos, sobreMi, trayectoria, type Lang } from './data/perfil';
 import { textos, type Textos } from './data/textos';
 import { EcoChat } from './components/EcoChat';
 import { useIdioma, useTema, type PrefTema } from './lib/ajustes';
@@ -23,7 +23,7 @@ function Cabecera({ t, lang, setLang, tema, setTema }: { t: Textos; lang: Lang; 
       <Contenedor className="flex items-center gap-3">
         <a href="#inicio" className="mr-auto text-[15px] font-semibold tracking-tight">Diego de la Calle</a>
         <nav className="hidden gap-1 md:flex">
-          {(['proyectos', 'trayectoria', 'formacion', 'contacto'] as const).map((k) => (
+          {(['promocar', 'proyectos', 'trayectoria', 'formacion', 'contacto'] as const).map((k) => (
             <a key={k} href={`#${k}`} className="rounded-pill px-3 py-1.5 text-sm text-ink-2 hover:bg-sunken hover:text-ink">{t.nav[k]}</a>
           ))}
         </nav>
@@ -83,6 +83,27 @@ export default function App() {
             <EcoChat t={t.eco} lang={lang} />
           </Contenedor>
         </section>
+
+        <Seccion id="promocar" modulo="trayectoria" titulo={t.promocar.titulo} sub={t.promocar.sub}>
+          <div className="grid gap-4 lg:grid-cols-3">
+            {casosPromocar.map((c) => (
+              <article key={c.titulo.es} className="flex flex-col rounded-l bg-surface p-5 sm:p-6">
+                <h3 className="text-lg font-semibold tracking-tight">{c.titulo[lang]}</h3>
+                <dl className="mt-4 flex flex-1 flex-col gap-3 text-[15px] leading-relaxed">
+                  {([['problema', c.problema], ['solucion', c.solucion], ['resultado', c.resultado]] as const).map(([k, v]) => (
+                    <div key={k}>
+                      <dt className="text-sm font-semibold text-acc-ink">{k === 'solucion' ? t.promocar.solucion : t.proyectos[k]}</dt>
+                      <dd className="mt-0.5 text-ink-2">{v[lang]}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Stack">
+                  {c.stack.map((x) => <li key={x} className="rounded-pill bg-sunken px-2.5 py-1 text-xs text-ink-2">{x}</li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </Seccion>
 
         <Seccion id="proyectos" modulo="proyectos" titulo={t.proyectos.titulo} sub={t.proyectos.sub}>
           <div className="flex flex-col gap-6">

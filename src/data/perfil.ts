@@ -24,10 +24,35 @@ export const hero = {
     en: 'I lead Data & AI at promoCAR (Kantar Insights), where I still code, and outside the office I build AI products end to end.',
   } as T,
   pruebas: {
-    es: ['Programando desde 2007', 'Datos para grandes grupos de automoción', '2 productos con IA en producción'],
-    en: ['Coding since 2007', 'Data for major automotive groups', '2 AI products in production'],
+    es: ['17 años en promoCAR (Kantar Insights)', 'Datos para grandes grupos de automoción', '2 productos con IA en producción'],
+    en: ['17 years at promoCAR (Kantar Insights)', 'Data for major automotive groups', '2 AI products in production'],
   } as Record<Lang, string[]>,
 };
+
+/** promoCAR: 17 años de experiencia contados como casos (sin nombres de clientes, por confidencialidad). */
+export const casosPromocar: { titulo: T; problema: T; solucion: T; resultado: T; stack: string[] }[] = [
+  {
+    titulo: { es: 'De Access a Python con IA', en: 'From Access to Python with AI' },
+    problema: { es: 'Aplicaciones críticas en Access y VBA: lentas de ejecutar y arriesgadas de cambiar.', en: 'Critical apps in Access and VBA: slow to run and risky to change.' },
+    solucion: { es: 'Migración de 6 aplicaciones a Python (pandas, FastAPI, openpyxl) con Claude Code y tests unitarios.', en: 'Migrated 6 applications to Python (pandas, FastAPI, openpyxl) with Claude Code and unit tests.' },
+    resultado: { es: 'Procesos de varias horas que ahora tardan minutos, y cambios más rápidos y seguros.', en: 'Processes that took hours now take minutes, and changes are faster and safer.' },
+    stack: ['Python', 'pandas', 'FastAPI', 'Claude Code'],
+  },
+  {
+    titulo: { es: 'Inteligencia de mercado en más de 20 mercados', en: 'Market intelligence across 20+ markets' },
+    problema: { es: 'Las marcas necesitan saber qué ofrece la competencia en cada concesionario: promociones, descuentos y financiación.', en: 'Brands need to know what competitors offer at each dealership: promotions, discounts and financing.' },
+    solucion: { es: 'Cálculos de beneficio promocional, igualación de cuotas y alertas sobre datos de mystery shopping, con SQL Server, web scraping y procesos ETL.', en: 'Promotional-benefit, payment-equalisation and alert calculations on mystery-shopping data, with SQL Server, web scraping and ETL.' },
+    resultado: { es: 'Cuadros de mando en Power BI y aplicaciones web para los principales grupos de automoción.', en: 'Power BI dashboards and web apps for leading automotive groups.' },
+    stack: ['SQL Server', 'ASP.NET', 'Power BI', 'ETL', 'Web scraping'],
+  },
+  {
+    titulo: { es: 'IA aplicada al negocio', en: 'AI applied to the business' },
+    problema: { es: 'Mucha información llega en documentos y textos que alguien tenía que revisar a mano.', en: 'Lots of information arrives as documents and text someone had to review by hand.' },
+    solucion: { es: 'Estrategia de IA de la empresa, OCR e IA documental (Azure AI) para las ofertas de concesionarios y APIs de LLM (Claude y OpenAI) para enriquecer y validar datos.', en: "The company's AI strategy, OCR and document AI (Azure AI) for dealer offers, and LLM APIs (Claude and OpenAI) to enrich and validate data." },
+    resultado: { es: 'IA solo donde aporta valor, con supervisión humana y aplicaciones web internas y para clientes.', en: 'AI only where it adds value, with human oversight, plus internal and client-facing web apps.' },
+    stack: ['Azure AI', 'Claude', 'OpenAI', 'Antigravity'],
+  },
+];
 
 export type Proyecto = {
   id: string; nombre: string; url?: string; etiqueta: T; periodo: string;
@@ -141,6 +166,8 @@ export function fichaParaEco(): string {
     `Nombre: ${contacto.nombre}. Ciudad: ${contacto.ciudad[l]}. Cargo: ${hero.cargo[l]}.`,
     `Resumen: ${hero.titular[l]} ${hero.bajada[l]}`,
     `Contacto público: email ${contacto.email}, LinkedIn ${contacto.linkedin}. El CV se descarga desde esta web.`,
+    'Casos destacados en promoCAR:',
+    ...casosPromocar.map((c) => `- ${c.titulo[l]}: ${c.problema[l]} ${c.solucion[l]} ${c.resultado[l]}`),
     'Trayectoria:',
     ...trayectoria.map((e) => `- ${e.periodo[l]}: ${e.cargo[l]} en ${e.empresa}. ${e.puntos.map((p) => p[l]).join(' ')}`),
     'Proyectos propios:',

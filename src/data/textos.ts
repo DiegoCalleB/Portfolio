@@ -2,7 +2,7 @@ import type { Lang } from './perfil';
 
 export const textos = {
   es: {
-    nav: { proyectos: 'Proyectos', trayectoria: 'Trayectoria', formacion: 'Formación', contacto: 'Contacto' },
+    nav: { promocar: 'promoCAR', proyectos: 'Proyectos', trayectoria: 'Trayectoria', formacion: 'Formación', contacto: 'Contacto' },
     tema: { light: 'Claro', dark: 'Oscuro', system: 'Sistema' },
     sonido: { si: '♪ Sí', no: '♪ No', titulo: 'Sonido al descargar el CV' },
     cv: 'Descargar CV',
@@ -18,6 +18,7 @@ export const textos = {
       limite: 'Muchas preguntas seguidas. Eco descansa un rato; Diego responde encantado por LinkedIn.',
       aviso: 'Eco responde con los datos de esta web. Puede equivocarse: lo que cuenta es lo que diga Diego.',
     },
+    promocar: { titulo: 'promoCAR (Kantar Insights)', sub: '17 años convirtiendo datos de automoción en decisiones. De programador de VBA a Head of Data & AI.', solucion: 'Qué hice' },
     proyectos: { titulo: 'Proyectos propios', sub: 'Construidos de principio a fin, en producción.', problema: 'El problema', solucion: 'Qué construí', resultado: 'Resultado', visitar: 'Visitar', lab: 'Laboratorio de apps con IA', labSub: 'Ideas que pasaron de una tarde a estar publicadas.' },
     trayectoria: { titulo: 'Trayectoria', sub: 'La altura de cada barra son los años en cada etapa.', anos: (n: number) => (n === 1 ? '1 año' : `${n} años`) },
     formacion: { titulo: 'Formación y competencias', idiomas: 'Idiomas', aficiones: 'Fuera del teclado' },
@@ -25,7 +26,7 @@ export const textos = {
     pie: 'Hecho a mano con React, Tailwind y Claude Code. Diseño Espectro, el de BandManager.',
   },
   en: {
-    nav: { proyectos: 'Projects', trayectoria: 'Career', formacion: 'Education', contacto: 'Contact' },
+    nav: { promocar: 'promoCAR', proyectos: 'Projects', trayectoria: 'Career', formacion: 'Education', contacto: 'Contact' },
     tema: { light: 'Light', dark: 'Dark', system: 'System' },
     sonido: { si: '♪ On', no: '♪ Off', titulo: 'Sound when downloading the CV' },
     cv: 'Download CV',
@@ -41,6 +42,7 @@ export const textos = {
       limite: 'Lots of questions in a row. Eco is taking a break; Diego is happy to answer on LinkedIn.',
       aviso: 'Eco answers from the data on this site. It can be wrong: what counts is what Diego says.',
     },
+    promocar: { titulo: 'promoCAR (Kantar Insights)', sub: '17 years turning automotive data into decisions. From VBA developer to Head of Data & AI.', solucion: 'What I did' },
     proyectos: { titulo: 'Personal projects', sub: 'Built end to end, running in production.', problema: 'The problem', solucion: 'What I built', resultado: 'Outcome', visitar: 'Visit', lab: 'AI apps lab', labSub: 'Ideas that went from an afternoon to published.' },
     trayectoria: { titulo: 'Career', sub: 'Each bar is as tall as the years spent in that role.', anos: (n: number) => (n === 1 ? '1 year' : `${n} years`) },
     formacion: { titulo: 'Education and skills', idiomas: 'Languages', aficiones: 'Away from the keyboard' },

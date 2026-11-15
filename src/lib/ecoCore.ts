@@ -47,3 +47,11 @@ export function crearLimitador(max: number = LIMITES.peticionesPorHora, ventanaM
     return true;
   };
 }
+
+/** Si la respuesta se corta por el límite de tokens, se recorta en la última frase completa. */
+export function recortarAFrase(texto: string): string {
+  const t = texto.trim();
+  if (/[.!?…»)"”]$/.test(t)) return t;
+  const fin = Math.max(t.lastIndexOf('. '), t.lastIndexOf('! '), t.lastIndexOf('? '), t.lastIndexOf('.\n'));
+  return fin > 40 ? t.slice(0, fin + 1) : t;
+}

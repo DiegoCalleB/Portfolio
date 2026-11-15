@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { crearLimitador, instruccionesEco, limpiarConversacion, LIMITES } from './ecoCore';
+import { crearLimitador, instruccionesEco, limpiarConversacion, LIMITES, recortarAFrase } from './ecoCore';
 
 describe('limpiarConversacion', () => {
   it('acepta una conversación válida que termina en pregunta', () => {
@@ -36,5 +36,14 @@ describe('instruccionesEco', () => {
     expect(txt).toContain('<ficha>');
     expect(txt).toContain('BandManager.io');
     expect(txt).not.toMatch(/\+34|660/);
+  });
+});
+
+describe('recortarAFrase', () => {
+  it('deja intacta una respuesta completa', () => {
+    expect(recortarAFrase('Diego dirige Data & AI. ¡Y toca el bajo!')).toBe('Diego dirige Data & AI. ¡Y toca el bajo!');
+  });
+  it('recorta en la última frase completa si la respuesta viene cortada', () => {
+    expect(recortarAFrase('Diego dirige Data & AI en promoCAR y programa a diario. Además se encarga de los cuadros de')).toBe('Diego dirige Data & AI en promoCAR y programa a diario.');
   });
 });

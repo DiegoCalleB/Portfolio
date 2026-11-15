@@ -1,4 +1,4 @@
-import { crearLimitador, instruccionesEco, limpiarConversacion } from '../src/lib/ecoCore.js';
+import { crearLimitador, instruccionesEco, limpiarConversacion, recortarAFrase } from '../src/lib/ecoCore.js';
 
 const permitir = crearLimitador();
 /** `gemini-flash-latest` lo mueve Google al Flash vigente; los nombres fijos se retiran (gemini-2.5-flash ya da 404). */
@@ -24,7 +24,7 @@ export async function POST(request: Request): Promise<Response> {
   const cuerpo = JSON.stringify({
     systemInstruction: { parts: [{ text: instruccionesEco(lang) }] },
     contents: msgs.map((m) => ({ role: m.role === 'user' ? 'user' : 'model', parts: [{ text: m.text }] })),
-    generationConfig: { temperature: 0.3, maxOutputTokens: 400 },
+    generationConfig: { temperature: 0.3, maxOutputTokens: 1200 },
   });
   let res: Response | null = null;
   for (const modelo of MODELOS) {
@@ -37,5 +37,5 @@ export async function POST(request: Request): Promise<Response> {
   if (!res?.ok) return json(502, { error: 'eco_no_responde' });
   const data = (await res.json()) as { candidates?: { content?: { parts?: { text?: string }[] } }[] };
   const reply = data.candidates?.[0]?.content?.parts?.map((p) => p.text ?? '').join('').trim();
-  return reply ? json(200, { reply }) : json(502, { error: 'eco_sin_respuesta' });
+  return reply ? json(200, { reply: recortarAFrase(reply) }) : json(502, { error: 'eco_sin_respuesta' });
 }

@@ -38,14 +38,14 @@ export const ticker = ['Python', 'TypeScript', 'React', 'Next.js', 'Node.js', 'F
 
 /** promoCAR: el alcance de la responsabilidad técnica. Sin cifras ni nombres de clientes. */
 export const responsabilidad = {
-  titulo: { es: 'Responsable técnico de todo el desarrollo', en: 'Technical owner of all development' } as T,
+  titulo: { es: 'Responsable técnico del desarrollo', en: 'Technical owner of development' } as T,
   intro: {
     es: 'Analista programador de la empresa: del análisis al despliegue, en back y en front, con todas las bases de datos SQL Server.',
     en: "The company's analyst programmer: from analysis to deployment, back end and front end, with all the SQL Server databases.",
   } as T,
   modulos: ['Monitor', 'Analizar', 'Shopper', 'Leaser'],
   puntos: [
-    { es: 'Todas las aplicaciones y webs, internas y de cliente', en: 'All applications and websites, internal and client-facing' },
+    { es: 'La mayoría de las aplicaciones y webs, internas y de cliente', en: 'Most applications and websites, internal and client-facing' },
     { es: 'Informes y cuadros de mando para clientes', en: 'Client reports and dashboards' },
     { es: 'Todas las bases de datos SQL Server del negocio', en: "All of the business's SQL Server databases" },
     { es: 'Decisiones técnicas importantes', en: 'Important technical decisions' },
@@ -150,7 +150,7 @@ export const trayectoria: Etapa[] = [
     periodo: { es: 'Ene 2013 – Dic 2025', en: 'Jan 2013 – Dec 2025' }, anos: 13, empresa: 'promoCAR (Kantar Insights)',
     cargo: { es: 'Innovation & Development Consultant · Senior Analyst & Developer', en: 'Innovation & Development Consultant · Senior Analyst & Developer' },
     puntos: [
-      { es: 'Responsable del desarrollo full stack (back y front) de todas las aplicaciones y webs de la empresa, internas y de cliente, incluidos los módulos Monitor, Analizar, Shopper y Leaser.', en: "Owned the full-stack development (back end and front end) of all the company's applications and websites, internal and client-facing, including the Monitor, Analizar, Shopper and Leaser modules." },
+      { es: 'Responsable del desarrollo full stack (back y front) de la mayoría de las aplicaciones y webs de la empresa, internas y de cliente, incluidos los módulos Monitor, Analizar, Shopper y Leaser.', en: "Owned the full-stack development (back end and front end) of most of the company's applications and websites, internal and client-facing, including the Monitor, Analizar, Shopper and Leaser modules." },
       { es: 'Diseño y administración de todas las bases de datos SQL Server del negocio, con integración de datos por web scraping y procesos ETL.', en: "Designed and managed all of the business's SQL Server databases, with web-scraping data integration and ETL processes." },
       { es: 'Cálculos de beneficio promocional y financiación para analizar datos de mystery shopping en más de 20 mercados, para los principales grupos de automoción.', en: 'Promotional-benefit and financing calculations to analyse mystery-shopping data in 20+ markets, for leading automotive groups.' },
       { es: 'Informes y cuadros de mando en Power BI para clientes.', en: 'Client reports and Power BI dashboards.' },

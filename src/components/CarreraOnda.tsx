@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { trayectoria, type Lang } from '../data/perfil';
 import { useEnVista } from './Revelar';
+import { alturaBarra } from '../lib/carrera';
 
 const ANOS = Array.from({ length: 20 }, (_, i) => 2007 + i);
 const etapaDe = (a: number) => (a >= 2026 ? 0 : a >= 2013 ? 1 : a >= 2009 ? 2 : 3);
-const NIVEL = [100, 78, 54, 32];
 const HITOS = new Set([2007, 2009, 2013, 2026]);
 
-/** La carrera como una Onda: una barra por año, cada vez más alta. Se toca o se recorre con el teclado. */
+/** La carrera como una Onda: una barra por año, cada vez más alta (crescendo: la altura crece en todos los años, no por etapas). Se toca o se recorre con el teclado. */
 export function CarreraOnda({ lang, pista }: { lang: Lang; pista: string }) {
   const [sel, setSel] = useState(0);
   const [ref, dentro] = useEnVista<HTMLDivElement>(0.3);
@@ -26,7 +26,7 @@ export function CarreraOnda({ lang, pista }: { lang: Lang; pista: string }) {
               <span
                 className="block w-full max-w-4 rounded-pill"
                 style={{
-                  height: dentro ? `${NIVEL[k]}%` : '8%', background: `var(--mod-${k + 1})`, opacity: k === sel ? 1 : 0.32,
+                  height: dentro ? `${alturaBarra(i, ANOS.length)}%` : '8%', background: `var(--mod-${k + 1})`, opacity: k === sel ? 1 : 0.32,
                   transition: `height 700ms cubic-bezier(.3,1.4,.5,1) ${dentro ? i * 35 : 0}ms, opacity 200ms`,
                 }}
               />
